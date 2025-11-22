@@ -60,32 +60,66 @@ export default function App() {
     }
 
     return (
-        <div className={"flex flex-col h-screen items-center gap-10 pt-10 " + (classification ? "justify-start": "justify-center")}>
-            <form className="flex flex-col w-xl max-w-screen gap-10 px-10" onSubmit={handleSubmit}>
-                <h1 className="text-center text-6xl">Комунальний помічник</h1>
-                <div className="relative">
-                    <textarea ref={textboxRef} value={textAreaValue} onChange={handleChange} onKeyDown={checkForEnter} placeholder="Чим я можу Вам допомогти?" rows={1}
-                              className="w-full min-h-16 text-xl/10 rounded-[32px] py-3 pl-5 pr-15 bg-white shadow-xl placeholder:text-neutral-500 resize-none"/>
-                    <button ref={buttonRef} type="submit" className="absolute bottom-5 right-4 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                             fill="none">
-                            <path
-                                d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16Z"
-                                fill="black"/>
-                            <path d="M8 16H24M24 16L17.7778 10M24 16L17.7778 22" stroke="white" strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"/>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-            {isLoading ? <p className="text-2xl">loading...</p>:
-                <div className="flex flex-col gap-10 px-10 w-6xl max-w-screen">
-                    <p className="text-xl">{classification}</p>
-                    {genRequest ? <p className="text-2xl font-semibold whitespace-pre-line">{genRequest}</p> : null}
-                    <p></p>
-                </div>
-            }
-        </div>
-    )
+      <div
+        className={
+          "flex flex-col h-screen items-center gap-10 pt-10 " +
+          (classification ? "justify-start" : "justify-center")
+        }
+      >
+        <form
+          className="flex flex-col w-xl max-w-screen gap-10 px-10"
+          onSubmit={handleSubmit}
+        >
+          <h1 className="text-center text-6xl">Комунальний помічник</h1>
+          <div className="relative">
+            <textarea
+              ref={textboxRef}
+              value={textAreaValue}
+              onChange={handleChange}
+              onKeyDown={checkForEnter}
+              placeholder="Чим я можу Вам допомогти?"
+              rows={1}
+              className="w-full min-h-16 text-xl/10 rounded-[32px] py-3 pl-5 pr-15 bg-white shadow-xl placeholder:text-neutral-500 resize-none"
+            />
+            <button
+              ref={buttonRef}
+              type="submit"
+              className="absolute bottom-5 right-4 cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+              >
+                <path
+                  d="M0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16Z"
+                  fill="black"
+                />
+                <path
+                  d="M8 16H24M24 16L17.7778 10M24 16L17.7778 22"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </form>
+        {isLoading ? (
+          <p className="text-2xl">loading...</p>
+        ) : (
+          <div className="flex flex-col gap-10 px-10 w-6xl max-w-screen">
+            <p className="text-xl whitespace-pre-line">{classification}</p>
+            {genRequest ? (
+              <p className="text-2xl font-semibold whitespace-pre-line">
+                {genRequest}
+              </p>
+            ) : null}
+          </div>
+        )}
+      </div>
+    );
 }
