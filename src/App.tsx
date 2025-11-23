@@ -27,24 +27,28 @@ export default function App() {
             buttonRef.current.classList.toggle("cursor-pointer");
             buttonRef.current.classList.toggle("opacity-50");
             setIsLoading(true);
-            await fetch('https://a6rn8adkxb.eu-central-1.awsapprunner.com/api/process-complaint', {
-                method: 'POST',
+            await fetch(
+              "https://uvr9qebv26.eu-central-1.awsapprunner.com/api/process-complaint",
+              {
+                method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    "text": textAreaValue
-                })
-            }).then(res => res.json()).then(data => {
+                  text: textAreaValue,
+                }),
+              }
+            )
+              .then((res) => res.json())
+              .then((data) => {
                 if (data.success) {
-                    setClassification(data.data.classification.result);
-                    setGenRequest(data.data.generatedRequest);
-                }
-                else {
-                    setClassification(data.message);
+                  setClassification(data.data.classification.result);
+                  setGenRequest(data.data.generatedRequest);
+                } else {
+                  setClassification(data.message);
                 }
                 setIsLoading(false);
-            });
+              });
             // console.log(res);
             buttonRef.current.disabled = false;
             buttonRef.current.classList.toggle("cursor-pointer");
